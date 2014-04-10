@@ -11,7 +11,10 @@
    * @param  {configurable}             settings The settings function.
    */
   sigma.canvas.nodes.bordered = function(node, context, settings) {
-    var prefix = settings('prefix') || '';
+    var prefix = settings('prefix') || '',
+        x = node[prefix + 'x'],
+        y = node[prefix + 'y'],
+        size = node[prefix + 'size'];
 
     // Node border:
     if (settings('borderSize') > 0) {
@@ -20,8 +23,8 @@
         (node.color || settings('defaultNodeColor')) :
         settings('defaultNodeBorderColor');
       context.arc(
-        node[prefix + 'x'],
-        node[prefix + 'y'],
+        x,
+        y,
         size + settings('borderSize'),
         0,
         Math.PI * 2,
@@ -34,9 +37,9 @@
     context.fillStyle = node.color || settings('defaultNodeColor');
     context.beginPath();
     context.arc(
-      node[prefix + 'x'],
-      node[prefix + 'y'],
-      node[prefix + 'size'],
+      x,
+      y,
+      size,
       0,
       Math.PI * 2,
       true
