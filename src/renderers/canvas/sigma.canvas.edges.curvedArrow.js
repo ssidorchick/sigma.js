@@ -19,6 +19,7 @@
         defaultNodeColor = settings('defaultNodeColor'),
         defaultEdgeColor = settings('defaultEdgeColor'),
         tSize = target[prefix + 'size'],
+        thickness = edge[prefix + 'size'] || 1,
         sX = source[prefix + 'x'],
         sY = source[prefix + 'y'],
         tX = target[prefix + 'x'],
@@ -39,7 +40,7 @@
     }
 
     var d = Math.sqrt(Math.pow(tX - controlX, 2) + Math.pow(tY - controlY, 2)),
-        aSize = (edge[prefix + 'size'] || 1) * 2.5,
+        aSize = Math.max(thickness * 2.5, settings('minArrowSize')),
         aX = controlX + (tX - controlX) * (d - aSize - tSize) / d,
         aY = controlY + (tY - controlY) * (d - aSize - tSize) / d,
         vX = (tX - controlX) * aSize / d,
@@ -59,7 +60,7 @@
       }
 
     context.strokeStyle = color;
-    context.lineWidth = edge[prefix + 'size'] || 1;
+    context.lineWidth = thickness;
     context.beginPath();
     context.moveTo(sX, sY);
     if (source.id === target.id) {
