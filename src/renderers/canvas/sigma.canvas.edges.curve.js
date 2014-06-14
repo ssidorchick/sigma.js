@@ -61,5 +61,14 @@
       context.quadraticCurveTo(controlX, controlY, tX, tY);
     }
     context.stroke();
+
+    if (settings('drawEdgeLabels'))
+      sigma.canvas.labels.edges.def(
+        edge,
+        source,
+        target,
+        context,
+        settings
+    );
   };
 })();

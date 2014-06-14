@@ -77,5 +77,14 @@
     context.lineTo(aX + vX, aY + vY);
     context.closePath();
     context.fill();
+
+    if (settings('drawEdgeLabels'))
+      sigma.canvas.labels.edges.def(
+        edge,
+        source,
+        target,
+        context,
+        settings
+    );
   };
 })();
